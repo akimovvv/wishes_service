@@ -67,7 +67,12 @@ def delete():
 	lists_info = cursor.fetchall()
 	print(lists_info)
 	position = int(input(f"Input from 1 to {len(lists_info)} which datas do you want delete - "))
+	# If we want do some request to database and we shoud write some term to compare and etc.
+	# For example like (Example 1 "See below") we have two way
+	#First is without any lists we can write geted users`s data like this (user`s data,), 
+	# beacause when we making request from database it`s return us data like lists form and then our data from database look like (user`s data)
 	if position > 0 and position <= len(lists_info):
+		# Example 1
 		cursor.execute("""DELETE FROM wishes WHERE id = (?);""", (position,))
 		conn.commit()
 		print("Succsessful!")
@@ -78,8 +83,13 @@ def show():
 	cursor.execute("""SELECT id FROM wishes""")
 	lists_info = cursor.fetchall()
 	position = int(input(f"Input position from 1 to {len(lists_info)} which you want see - "))
+	# Here is a second way. Here we take some data from user and saved in (position) , after we create list and insert (position) in list
+	# And when we making request we can just write list`s name (z) like in (Example 2)
+	z =[]
+	z.append(position)
 	if position > 0 and position <= len(lists_info):
-		cursor.execute("""SELECT name, active FROM wishes WHERE id = (?);""", (position,))
+		# Example 2
+		cursor.execute("""SELECT name, active FROM wishes WHERE id = (?);""", z)
 		show = cursor.fetchall()
 		print(show)
 	else:
