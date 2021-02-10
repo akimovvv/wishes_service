@@ -2,6 +2,8 @@ import second
 
 def main():
 
+	print("Welcome to Wish Service !")
+
 	while True:
 		action = input("Input your action \n"\
 			"New Data (n) \n"\
